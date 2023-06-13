@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+dependencies = []
+name = "dtcc-common"
+version = "0.1.0"
+description = "DTCC Common"
+readme = "README.md"
+authors = [
+  { name = "Anders Logg", email = "logg@chalmers.se" }
+]
+requires-python = ">=3.8"
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.cibuildwheel]
+test-command = "pytest {project}/tests"
+build-verbosity = 1
