@@ -19,7 +19,7 @@ debug, info, warning, error, critical = _init_logging("dtcc-common")
 
 def init_logging(name):
     "Initialize logging for given package"    
-    info(f"Initializing logging for {name}")
+    debug(f"Initializing logging for {name}")
     return _init_logging(name)
 
 def set_log_level(level):
