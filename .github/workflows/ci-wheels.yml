@@ -34,7 +34,7 @@ jobs:
     name: Build source distribution
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Build sdist
         run: pipx run build --sdist
@@ -61,5 +61,5 @@ jobs:
           path: dist
 
       - uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository_url: https://test.pypi.org/legacy/
+        #with:
+          #repository_url: https://test.pypi.org/legacy/
