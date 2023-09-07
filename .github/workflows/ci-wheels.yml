@@ -41,7 +41,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          path: dist/dtcc_common*.tar.gz
+          path: dist/dtcc-common*.tar.gz
 
   upload_pypi:
     needs: [build_sdist, build_wheels]
