@@ -3,26 +3,30 @@
 
 import logging as _logging
 
+# Global logger object
+_logger = None
 
 def _init_logging(name):
     "Internal function for initializing logging"
 
+    global _logger
+
     # Initialize logger
     format = "%(asctime)s [%(name)s] [%(levelname)s] %(message)s"
     _logging.basicConfig(format=format)
-    logger = _logging.getLogger(name)
-    logger.setLevel(_logging.INFO)
+    _logger = _logging.getLogger(name)
+    _logger.setLevel(_logging.INFO)
 
     # Define error and critical as print + exit
     def error(message):
-        logger.error(message)
+        _logger.error(message)
         exit(1)
 
     def critical(message):
-        logger.critical(message)
+        _logger.critical(message)
         exit(1)
 
-    return (logger.debug, logger.info, logger.warning, error, critical)
+    return (_logger.debug, _logger.info, _logger.warning, error, critical)
 
 
 debug, info, warning, error, critical = _init_logging("dtcc-common")
@@ -44,4 +48,7 @@ def set_log_level(level):
     "CRITICAL"
 
     """
-    logger.setLevel(level)
+    global _logger
+    if _logger is None:
+        _init_logging("dtcc-common")
+    _logger.setLevel(level)
